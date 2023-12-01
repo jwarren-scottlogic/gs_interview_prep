@@ -46,7 +46,6 @@ public class RunLengthEncoder {
         if (input == null || input.isEmpty()) {
             return "";
         }
-
         StringBuilder encoded = new StringBuilder();
         int count = 1;
 
@@ -59,7 +58,6 @@ public class RunLengthEncoder {
                 count++;
             }
         }
-
         return encoded.toString();
     }
 
