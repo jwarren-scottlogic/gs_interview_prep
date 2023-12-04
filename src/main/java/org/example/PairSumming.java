@@ -11,7 +11,7 @@ public class PairSumming {
         List<Integer> listOfNumbers = inputList.stream().sorted().collect(Collectors.toList());
         int maxNumberOfPairs = 0;
         int iteratorMax = listOfNumbers.size()/ 2 + 1;
-        for (int i = 0;  i <= iteratorMax; i++ ){
+        for (int i = 0;  i <= iteratorMax; i++){
             int listNumber = listOfNumbers.get(0);
             listOfNumbers.remove(0);
             int numberOfPairs = (int) listOfNumbers.stream().filter(n -> sum - listNumber == n).count();

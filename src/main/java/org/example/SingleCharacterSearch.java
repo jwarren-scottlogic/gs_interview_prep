@@ -2,6 +2,7 @@ package org.example;
 
 public class SingleCharacterSearch {
 
+    // This is n^2 (can do in n apparently big O)
     public static char findCharacter(String inputString) throws Exception{
         while (inputString.length()>0){
             char letter = inputString.charAt(0);
