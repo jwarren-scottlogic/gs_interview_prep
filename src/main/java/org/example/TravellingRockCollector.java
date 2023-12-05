@@ -1,13 +1,12 @@
 package org.example;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class TravellingRockCollector {
 
-    public static int getMaxRocks(List<List<Integer>> map) {
+    public static int getMaxRocks(int[][] mapMatrix) {
+        List<List<Integer>> map = matrixConverter(mapMatrix);
 
         int numberOfSteps = (map.size()-1) + (map.get(0).size()-1);
         int numberOfRocks = 0;
@@ -71,11 +70,10 @@ public class TravellingRockCollector {
             return goNorth;
         }
         int benefitOfStayingOnCurrentRow = 0;
-        //comparing column and row (assuming more columns than rows... if not transpose before)
+
+        //comparing possible decisions as diagonals to the bottom column, going east (unless transposed)
+        //comparing diagonals where nth element in bottom row < number of rows.
         for (int i = 1; i < map.size(); i++){
-//            int rocksOnBottomRow = map.get(map.size()-1).get(i);
-//            int rocksOnColumn = map.get(map.size()-1-i).get(0);
-//            benefitOfStayingOnCurrentRow += rocksOnBottomRow - rocksOnColumn;
             int initialRocksOnBottomRow = map.get(map.size()-1).get((i));
             int initialRocksOnColumn = map.get((map.size()-1)-i).get(0);
             int minDifference = initialRocksOnBottomRow - initialRocksOnColumn;
@@ -121,18 +119,35 @@ public class TravellingRockCollector {
         return ret;
     }
 
+    private static List<List<Integer>> matrixConverter(int[][] mapMatrix) {
+        List<List<Integer>> convertedMap = new ArrayList<>();
+        for (int i = 0; i<mapMatrix.length; i++) {
+            List<Integer> mapIthRow = new ArrayList<>();
+            for (int j = 0; j<mapMatrix[0].length; j++){
+                mapIthRow.add(mapMatrix[i][j]);
+            }
+            convertedMap.add(mapIthRow);
+        }
+
+        return convertedMap;
+    }
+
 
     public static void main(String[] args) throws Exception {
-        ArrayList<Integer> y0 = new ArrayList<>(Arrays.asList(1, 0, 0, 0, 2));
-        ArrayList<Integer> y1 = new ArrayList<>(Arrays.asList(5, 15, 1, 2, 6));
-        ArrayList<Integer> y2 = new ArrayList<>(Arrays.asList(2, 3, 2, 2, 15));
+//        ArrayList<Integer> y0 = new ArrayList<>(Arrays.asList(1, 0, 0, 0, 2));
+//        ArrayList<Integer> y1 = new ArrayList<>(Arrays.asList(5, 15, 1, 2, 6));
+//        ArrayList<Integer> y2 = new ArrayList<>(Arrays.asList(2, 3, 2, 2, 15));
+//
+//        //my solution is quite complex, but it should work with any input, including the above
+//
+//        List<List<Integer>> map = new ArrayList<>();
+//        map.add(y0);
+//        map.add(y1);
+//        map.add(y2);
 
-        //my solution is quite complex, but it should work with any input, including the above
 
-        List<List<Integer>> map = new ArrayList<>();
-        map.add(y0);
-        map.add(y1);
-        map.add(y2);
-        System.out.println("Directions:"+ getMaxRocks(map));
+        int[][] matrix = {{1, 0, 0, 0, 2}, {5, 15, 1, 2, 6}, {2, 3, 2, 2, 15}};
+
+        System.out.println("Directions:"+ getMaxRocks(matrix));
     }
 }
