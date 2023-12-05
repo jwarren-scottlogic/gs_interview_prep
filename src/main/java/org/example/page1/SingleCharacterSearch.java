@@ -1,4 +1,4 @@
-package org.example;
+package org.example.page1;
 
 public class SingleCharacterSearch {
 

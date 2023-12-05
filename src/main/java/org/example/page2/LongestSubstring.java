@@ -1,4 +1,4 @@
-package org.example;
+package org.example.page2;
 import java.util.Map;
 
 public class LongestSubstring {
