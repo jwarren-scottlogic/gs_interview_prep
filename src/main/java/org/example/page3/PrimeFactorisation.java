@@ -32,10 +32,6 @@ public class PrimeFactorisation {
                 }
             }
         }
-        int[] factorisation = new int[factorisationList.size()];
-        for (int i=0; i<factorisationList.size(); i++) {
-            factorisation[i] = factorisationList.get(i);
-        }
-        return factorisation;
+        return factorisationList.stream().mapToInt(Integer::intValue).toArray();
     }
 }
