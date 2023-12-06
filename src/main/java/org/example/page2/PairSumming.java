@@ -10,20 +10,17 @@ public class PairSumming {
     public static int pairCounter(List<Integer> inputList, int sum) {
         List<Integer> listOfNumbers = inputList.stream().sorted().collect(Collectors.toList());
         int maxNumberOfPairs = 0;
-        int iteratorMax = listOfNumbers.size()/ 2 + 1;
-        for (int i = 0;  i <= iteratorMax; i++){
+        for (int i = 0;  i <= listOfNumbers.size()/ 2 + 1; i++){
             int listNumber = listOfNumbers.get(0);
             listOfNumbers.remove(0);
             int numberOfPairs = (int) listOfNumbers.stream().filter(n -> sum - listNumber == n).count();
             maxNumberOfPairs += numberOfPairs;
-//            System.out.println(listOfNumbers);
-//            System.out.println(numberOfPairs);
         }
         return maxNumberOfPairs;
     }
 
     public static void main(String[] args){
-        List<Integer> listOfNumbers = new ArrayList<>(Arrays.asList(5,4,2,6,2,3,1));
+        List<Integer> listOfNumbers = new ArrayList<>(Arrays.asList(4,4,4));
         int sumNumber = 8;
         System.out.println("Number of summing pairs to "+sumNumber+" => " + PairSumming.pairCounter(listOfNumbers, sumNumber));
     }
@@ -32,23 +29,33 @@ public class PairSumming {
 
 
 
-
-
-
-
-//public class PairSumming { //first attempt
-//    public static int pairCounter(List<Integer> listOfNumbers, int sum) {
-//        int maxNumberOfPairs = 0;
-//        for (int listNumber : listOfNumbers){
-//            int numberOfPairs = (int) listOfNumbers.stream().filter(n -> sum - listNumber == n).count();
-//            maxNumberOfPairs += numberOfPairs;
+//Recommended solution only O(n): (Jack Roper)
+//public static int solution(int[] inputArray, int target) {
+//    Map<Integer, Long> occurencesMap = Arrays.stream(inputArray).boxed().collect(Collectors.groupingBy(val -> val, Collectors.counting()));
+//
+//    int result = 0;
+//    for(Map.Entry<Integer, Long> entry : occurencesMap.entrySet()) {
+//        int currentVal = (int) entry.getKey();
+//        if(currentVal > target / 2) {
+//            continue;
 //        }
-//        return maxNumberOfPairs/2;
+//        int currentTarget = target - currentVal;
+//        if(currentTarget == currentVal) { // if target is even and this is the midpoint
+//            int occurences = entry.getValue().intValue();
+//            if(occurences > 1) {
+//                result += (occurences * (occurences - 1)) / (double) 2;
+//            }
+//        } else {
+//            Long correspondingOccurences = occurencesMap.get(currentTarget);
+//            if (correspondingOccurences == null) {
+//                continue;
+//            } else {
+//                result += entry.getValue() * correspondingOccurences;
+//            }
+//
+//        }
 //    }
 //
-//    public static void main(String[] args){
-//        List<Integer> listOfNumbers = new ArrayList<>(Arrays.asList(5,4,2,6,2,3,1));
-//        int sumNumber = 7;
-//        System.out.println("Number of summing pairs to "+sumNumber+" => " + PairSumming.pairCounter(listOfNumbers, sumNumber));
-//    }
-//}
+//    return result;
+
+
