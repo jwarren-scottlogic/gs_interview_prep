@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 public class LargestAnagramFromDictionary {
     public static void main(String[] args) throws Exception {
         List<String> dictionary = List.of("apple", "pear", "reap", "peal", "paple");
-        String anagram = "pplea";
+        String anagram = "prea";
         System.out.println(getLongestAnagrams(dictionary,anagram));
     }
     private static List<String> getLongestAnagrams(List<String> dictionary, String string) throws Exception {
@@ -69,5 +69,4 @@ public class LargestAnagramFromDictionary {
     private static Set<String> removeFirstCharacter(Set<String> allAnagrams){
         return allAnagrams.stream().map(s -> s.substring(1)).collect(Collectors.toSet());
     }
-
 }

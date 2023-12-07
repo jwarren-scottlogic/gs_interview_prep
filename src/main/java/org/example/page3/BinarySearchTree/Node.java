@@ -8,17 +8,17 @@ public class Node {
     Optional<Node> higherNode;
 
 
-    public Node(int nodeValue) {
-        value = nodeValue;
-        lowerNode = Optional.empty();
-        higherNode = Optional.empty();
+    public Node(int value) {
+       this.value = value;
+       this.lowerNode = Optional.empty();
+       this.higherNode = Optional.empty();
     }
 
-    public void setLowerNode(Node lower) {
-        lowerNode = Optional.of(lower);
+    public void setLowerNode(Node lowerNode) {
+        this.lowerNode = Optional.of(lowerNode);
     }
 
-    public void setHigherNode(Node higher) {
-        higherNode = Optional.of(higher);
+    public void setHigherNode(Node higherNode) {
+        this.higherNode = Optional.of(higherNode);
     }
 }

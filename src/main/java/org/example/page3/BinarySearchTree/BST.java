@@ -7,16 +7,16 @@ public class BST {
     Node firstNode;
     Set<Node> nodes;
 
-    public BST(Node node) {
-        firstNode = node;
-        nodes = new HashSet<>();
-        nodes.add(firstNode);
+    public BST(Node firstNode) {
+        this.firstNode = firstNode;
+        this.nodes = new HashSet<>();
+        this.nodes.add(this.firstNode);
     }
 
     public void addNode(int integer) {
         Node node = new Node(integer);
         positionNewNode(node);
-        nodes.add(node);
+        this.nodes.add(node);
     }
 
     private void positionNewNode(Node newNode) {
