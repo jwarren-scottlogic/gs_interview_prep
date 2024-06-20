@@ -33,5 +33,3 @@ j
 -src/main/java/org/example/page1/IpSearch.java,1\5\15f0c77dd326b04258ea30ae18b0ec1e9cc9b0a7
 c
 3src/main/java/org/example/others/MockInterview.java,9\3\93a0f3269585ee930438dfc70be0b91f43264500
-f
-6src/main/java/org/example/page4/myHashMap/MyEntry.java,9\5\95dff1aa5bdbdb0a1cf02e755997ed593d507f33
