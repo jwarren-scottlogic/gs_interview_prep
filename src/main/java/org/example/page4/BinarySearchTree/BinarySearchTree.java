@@ -1,10 +1,8 @@
-package org.example.page3.BinarySearchTree;
+package org.example.page4.BinarySearchTree;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class BinarySearchTree {
     public static void main(String[] args) {

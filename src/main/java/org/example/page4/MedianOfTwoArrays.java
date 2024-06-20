@@ -1,4 +1,4 @@
-package org.example.page3;
+package org.example.page4;
 
 public class MedianOfTwoArrays {
 

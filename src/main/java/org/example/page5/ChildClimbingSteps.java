@@ -1,4 +1,4 @@
-package org.example.page4;
+package org.example.page5;
 
 public class ChildClimbingSteps {
     public static void main(String[] args) {
