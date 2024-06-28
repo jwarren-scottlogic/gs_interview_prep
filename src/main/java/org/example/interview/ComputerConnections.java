@@ -66,7 +66,8 @@ public class ComputerConnections {
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
                 .entrySet().stream()
                 .max(Map.Entry.comparingByValue())
-                .get().getKey();
+                .orElseThrow(() -> new RuntimeException("No main computer exists"))
+                .getKey();
     }
 
     //which wires are unnecessary

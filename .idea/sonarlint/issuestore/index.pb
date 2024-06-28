@@ -9,8 +9,6 @@ l
 <src/main/java/org/example/page2/TravellingRockCollector.java,7\4\747c914b4651b120597cf2c73959684679643a2f
 `
 0src/main/java/org/example/page2/PairSumming.java,0\a\0ac38b1abe2bc805ccadc68aca542e2a8c384cf1
-7
-pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
 f
 6src/main/java/org/example/page2/LettersOfAlphabet.java,b\f\bfbf56c399a76e077cf70856e69780e6bf27f1ac
 `
