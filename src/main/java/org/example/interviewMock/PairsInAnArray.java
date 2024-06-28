@@ -71,8 +71,8 @@ public class PairsInAnArray {
         System.out.println("otherPair"+otherPair);
 
         int numberOfPairs = 0;
-        for(int i=0; i<array.length; i++) {
-            if (otherPair == array[i]) numberOfPairs++;
+        for (int j : array) {
+            if (otherPair == j) numberOfPairs++;
         }
         System.out.println("numberOfPairs: "+numberOfPairs);
 
@@ -88,5 +88,7 @@ learnt:
 To see arrays: Arrays.toString(newArray));
 Don't just delete values to replace them, think whether there was a reason I put it like that.
 look at Ryan's solution
+loop for arrays: for (int j : array) {
+
  */
 
