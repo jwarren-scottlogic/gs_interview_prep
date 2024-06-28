@@ -1,6 +1,6 @@
 package org.example.interview;
 
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
@@ -81,7 +81,7 @@ public class ComputerConnections2 {
             List<Connection> connections = List.of(new Connection(0, 1), new Connection(0, 2), new Connection(1, 2));
             int actual = changeInConnections(n, connections);
             int expected = 1;
-            Assert.assertEquals(expected, actual);
+            Assertions.assertEquals(expected, actual);
         }
 
         @Test
@@ -95,7 +95,7 @@ public class ComputerConnections2 {
                     new Connection(1, 3));
             int actual = changeInConnections(n, connections);
             int expected = 2;
-            Assert.assertEquals(expected, actual);
+            Assertions.assertEquals(expected, actual);
         }
 
         @Test
@@ -109,7 +109,7 @@ public class ComputerConnections2 {
                     new Connection(4, 5));
             int actual = changeInConnections(n, connections);
             int expected = 1;
-            Assert.assertEquals(expected, actual);
+            Assertions.assertEquals(expected, actual);
         }
 
         @Test
@@ -123,7 +123,7 @@ public class ComputerConnections2 {
                     new Connection(1, 0));
             int actual = changeInConnections(n, connections);
             int expected = 1;
-            Assert.assertEquals(expected, actual);
+            Assertions.assertEquals(expected, actual);
         }
         @Test
         public void myTest3() {
@@ -135,7 +135,7 @@ public class ComputerConnections2 {
                     new Connection(1, 2));
             int actual = changeInConnections(n, connections);
             int expected = 1;
-            Assert.assertEquals(expected, actual);
+            Assertions.assertEquals(expected, actual);
         }
 
         @Test
@@ -148,7 +148,7 @@ public class ComputerConnections2 {
                     new Connection(1, 2));
             int actual = changeInConnections(n, connections);
             int expected = -1;
-            Assert.assertEquals(expected, actual);
+            Assertions.assertEquals(expected, actual);
         }
     }
 
@@ -156,7 +156,5 @@ public class ComputerConnections2 {
 /*
 Learnt:
     Dealing with optionals in a list: instead of: stream().filter(Optional::isPresent).map(Optional::get), we can flatMap: stream().flatMap(Optional::stream).
-
-
-
+    Nested testing comes from jupiter and have to replace Assert with Assertions
  */
