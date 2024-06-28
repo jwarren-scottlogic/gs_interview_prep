@@ -232,7 +232,7 @@ public class Underground {
 /*
 Learnt:
     Construct a set from a list: = new HashSet<>(aList);
-    Be careful when making to lists equal. If you don't want one changing the other, must make new ArrayList: List<TYPE> aList = new ArrayList<>(originalList);
+    Be careful when making two lists equal. If you don't want one changing the other, must make new ArrayList: List<TYPE> aList = new ArrayList<>(originalList);
     When some interior functions are very complex, worth writing little tests for them to see they are working.
     To find an object by min of a method on a field (e.g. : .stream().min(Comparator.comparingInt(fieldType::methodOnField))
     orElseThrow requires a lambda: .orElseThrow(() -> new RuntimeException(
