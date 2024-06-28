@@ -21,6 +21,7 @@ Output: -1
 */
 
 import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import org.junit.Assert;
@@ -30,7 +31,7 @@ import org.junit.jupiter.api.Test;
 public class ComputerConnections {
 
     public int changeInConnections(int n, List<Connection> wires) {
-        int mainComputer = wires.get(0).pointA;
+        int mainComputer = getMainComputer(wires);
         List<Integer> computerUnconnected = new ArrayList<>();
         for (int i = 0; i < n; i++) {
             if (!areTwoComputerConnected(wires, mainComputer, i)) {
@@ -40,9 +41,32 @@ public class ComputerConnections {
 
         List<Connection> unnecessaryWires = unnecessaryWires(wires);
 
+        int neededWires = computerUnconnected.size();
 
-        if (unnecessaryWires.size() >= computerUnconnected.size()) return computerUnconnected.size();
+        for (int i=0; i< computerUnconnected.size(); i++) {
+            for (int j=i+1; j< computerUnconnected.size(); j++){
+                boolean disconnectedComputersConnectedToEachother
+                        = areTwoComputerConnected(wires, computerUnconnected.get(i), computerUnconnected.get(j));
+                if (disconnectedComputersConnectedToEachother) neededWires--;
+            }
+        }
+
+        if (unnecessaryWires.size() >= neededWires) return neededWires;
         return -1;
+    }
+
+    private int getMainComputer(List<Connection> wires) {
+        // Find the computer that appears the most in the wires
+        return wires.stream()
+                // get all the computers mentioned
+                .filter(w -> w.pointA != w.pointB)
+                .map(w -> List.of(w.pointA, w.pointB))
+                .flatMap(List::stream)
+                //find the mode of the computers
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
+                .entrySet().stream()
+                .max(Map.Entry.comparingByValue())
+                .get().getKey();
     }
 
     //which wires are unnecessary
@@ -106,6 +130,7 @@ public class ComputerConnections {
             int expected = 1;
             Assert.assertEquals(expected, actual);
         }
+
         @Test
         public void exampleTest2() {
             int n = 6;
@@ -119,6 +144,7 @@ public class ComputerConnections {
             int expected = 2;
             Assert.assertEquals(expected, actual);
         }
+
         @Test
         public void myTest() {
             int n = 6;
@@ -129,22 +155,36 @@ public class ComputerConnections {
                     new Connection(1, 2),
                     new Connection(4, 5));
             int actual = changeInConnections(n, connections);
-            int expected = 2;
+            int expected = 1;
             Assert.assertEquals(expected, actual);
         }
-//        @Test // my solution fails if nothing connects to first wire... This could be solved by sorting by the number of times the computer appears in the wiring... but a different solution is needed
-//        public void myTest2() {
-//            int n = 6;
-//            List<Connection> connections = List.of(
-//                    new Connection(4, 5),
-//                    new Connection(0, 2),
-//                    new Connection(0, 3),
-//                    new Connection(1, 2),
-//                    new Connection(1, 0));
-//            int actual = changeInConnections(n, connections);
-//            int expected = 2;
-//            Assert.assertEquals(expected, actual);
-//        }
+
+        @Test
+        public void myTest2() {
+            int n = 6;
+            List<Connection> connections = List.of(
+                    new Connection(4, 5),
+                    new Connection(0, 2),
+                    new Connection(0, 3),
+                    new Connection(1, 2),
+                    new Connection(1, 0));
+            int actual = changeInConnections(n, connections);
+            int expected = 1;
+            Assert.assertEquals(expected, actual);
+        }
+        @Test
+        public void myTest3() {
+            int n = 5;
+            List<Connection> connections = List.of(
+                    new Connection(0, 1),
+                    new Connection(0, 2),
+                    new Connection(3, 4),
+                    new Connection(1, 2));
+            int actual = changeInConnections(n, connections);
+            int expected = 1;
+            Assert.assertEquals(expected, actual);
+        }
+
         @Test
         public void exampleTestFailure() {
             int n = 6;
@@ -202,6 +242,4 @@ public class ComputerConnections {
     This is a refined version with more tests of the answer I gave in my interview. It's highly inefficient so could do with reducing the number of nested loops
     My interviewer suggested at the end that I change all the input wirings that I can to point to the main computer. So [0,1],[0,2],[2,1] becomes [0,1],[0,2],[0,1]
             then obviously all the duplicates can be changed
-
-    My solution also has a few problems ie myTest2 line 135-147
  */
